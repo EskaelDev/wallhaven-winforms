@@ -19,8 +19,14 @@ namespace wallpaper_forms
         public MainForm()
         {
             InitializeComponent();
+            InitComponents();
         }
 
+        private void InitComponents()
+        {
+            chNSFW.Enabled = GlobalVariables.Logged;
+            inSearch.Text = GlobalVariables.SearchBoxPlaceholderText;
+        }
 
         private async void nextButton_Click(object sender, EventArgs e)
         {
@@ -35,8 +41,8 @@ namespace wallpaper_forms
         private async Task LoadWallpaper()
         {
             Cursor = Cursors.WaitCursor;
-            Settings.Categories = RequestService.BuildCategoryString(General, Anime, People);
-            Settings.Putiry = RequestService.BuildPurityString(SFW, Sketchy, NSFW);
+            AppSettings.Categories = RequestService.BuildCategoryString(chGeneral, chAnime, chPeople);
+            AppSettings.Putiry = RequestService.BuildPurityString(chSFW, chSketchy, chNSFW);
 
             await DownloadWallpaper();
             Cursor = Cursors.Arrow;
@@ -46,29 +52,33 @@ namespace wallpaper_forms
         {
             GlobalVariables.FullImage = null;
 
-            await RequestService.DownloadImage(Search.Text);
+            if (inSearch.Text.Equals(GlobalVariables.SearchBoxPlaceholderText))
+                await RequestService.RequestImageDetails("");
+            else
+                await RequestService.RequestImageDetails(inSearch.Text);
 
-            Image image = await ImageService.GetImage(GlobalVariables.ThimbNailURL);
+            Image image = await ImageService.GetImage(GlobalVariables.ThumbnailURL);
             pictureBoxActive.Image = image;
-            buttonSave.Text = "Save";
-            buttonSave.Enabled = true;
+            textBox1.Text = GlobalVariables.CurrentImageDetails;
+            bSave.Text = "Save";
+            bSave.Enabled = true;
         }
 
-        private async void Set_Click(object sender, EventArgs e)
+        private async void setButton_Click(object sender, EventArgs e)
         {
             await AssureImageDownloaded();
             WallpaperService.SetWallpaper(GlobalVariables.FullImage, WallpaperService.Style.Fill);
         }
 
-        private async void buttonSave_Click(object sender, EventArgs e)
+        private async void saveButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             await AssureImageDownloaded();
             int result = FileService.SaveImage(GlobalVariables.FullImage, $"{GlobalVariables.CurrentImageId}.png");
             if (result == 0)
             {
-                buttonSave.Text = "Saved";
-                buttonSave.Enabled = false;
+                bSave.Text = "Saved";
+                bSave.Enabled = false;
             }
             Cursor = Cursors.Arrow;
         }
@@ -77,6 +87,42 @@ namespace wallpaper_forms
         {
             if (GlobalVariables.FullImage is null)
                 GlobalVariables.FullImage = await ImageService.GetImage(GlobalVariables.PhotoURL);
+        }
+
+        private void inSearch_GetFocus(object sender, EventArgs e)
+        {
+            var txtBox = (TextBox)sender;
+            if (txtBox.Text.Equals(GlobalVariables.SearchBoxPlaceholderText))
+                txtBox.Text = "";
+        }
+
+        private void inSearch_LostFocus(object sender, EventArgs e)
+        {
+            if (inSearch.Text.Length <= 0)
+                ClearSearchInput();
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            ClearSearchInput();
+        }
+        private void ClearSearchInput()
+        {
+            inSearch.Text = GlobalVariables.SearchBoxPlaceholderText;
+        }
+
+        private void bSettings_Click(object sender, EventArgs e)
+        {
+            using (SettingsForm settings = new SettingsForm())
+            {
+                settings.ShowDialog(this);
+            }
+        }
+
+        private void inSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                bNext.PerformClick();
         }
     }
 }

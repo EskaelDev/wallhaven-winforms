@@ -1,4 +1,7 @@
-﻿namespace wallpaper_forms
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace wallpaper_forms
 {
     partial class MainForm
     {
@@ -28,17 +31,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pictureBoxActive = new System.Windows.Forms.PictureBox();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonNext = new System.Windows.Forms.Button();
-            this.General = new System.Windows.Forms.CheckBox();
-            this.Anime = new System.Windows.Forms.CheckBox();
-            this.People = new System.Windows.Forms.CheckBox();
-            this.SFW = new System.Windows.Forms.CheckBox();
-            this.Sketchy = new System.Windows.Forms.CheckBox();
-            this.NSFW = new System.Windows.Forms.CheckBox();
-            this.Search = new System.Windows.Forms.TextBox();
-            this.Set = new System.Windows.Forms.Button();
+            this.bSave = new System.Windows.Forms.Button();
+            this.bNext = new System.Windows.Forms.Button();
+            this.chGeneral = new System.Windows.Forms.CheckBox();
+            this.chAnime = new System.Windows.Forms.CheckBox();
+            this.chPeople = new System.Windows.Forms.CheckBox();
+            this.chSFW = new System.Windows.Forms.CheckBox();
+            this.chSketchy = new System.Windows.Forms.CheckBox();
+            this.chNSFW = new System.Windows.Forms.CheckBox();
+            this.inSearch = new System.Windows.Forms.TextBox();
+            this.bSet = new System.Windows.Forms.Button();
+            this.bPrevious = new System.Windows.Forms.Button();
+            this.bSettings = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.bClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxActive)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,117 +62,187 @@
             this.pictureBoxActive.TabIndex = 0;
             this.pictureBoxActive.TabStop = false;
             // 
-            // buttonSave
+            // bSave
             // 
-            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.buttonSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.buttonSave.FlatAppearance.BorderSize = 0;
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.buttonSave.Location = new System.Drawing.Point(389, 146);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(186, 35);
-            this.buttonSave.TabIndex = 1;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.bSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.bSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.bSave.FlatAppearance.BorderSize = 0;
+            this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.bSave.Location = new System.Drawing.Point(389, 146);
+            this.bSave.Name = "bSave";
+            this.bSave.Size = new System.Drawing.Size(186, 35);
+            this.bSave.TabIndex = 1;
+            this.bSave.Text = "Save";
+            this.bSave.UseVisualStyleBackColor = false;
+            this.bSave.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // buttonNext
+            // bNext
             // 
-            this.buttonNext.FlatAppearance.BorderSize = 0;
-            this.buttonNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonNext.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.buttonNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.buttonNext.Location = new System.Drawing.Point(389, 55);
-            this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(186, 33);
-            this.buttonNext.TabIndex = 2;
-            this.buttonNext.Text = "Next";
-            this.buttonNext.UseVisualStyleBackColor = true;
-            this.buttonNext.Click += new System.EventHandler(this.nextButton_Click);
+            this.bNext.FlatAppearance.BorderSize = 0;
+            this.bNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bNext.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.bNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.bNext.Location = new System.Drawing.Point(513, 55);
+            this.bNext.Name = "bNext";
+            this.bNext.Size = new System.Drawing.Size(95, 33);
+            this.bNext.TabIndex = 2;
+            this.bNext.Text = "Next";
+            this.bNext.UseVisualStyleBackColor = true;
+            this.bNext.Click += new System.EventHandler(this.nextButton_Click);
             // 
-            // General
+            // chGeneral
             // 
-            this.General.AutoSize = true;
-            this.General.Location = new System.Drawing.Point(372, 242);
-            this.General.Name = "General";
-            this.General.Size = new System.Drawing.Size(66, 19);
-            this.General.TabIndex = 3;
-            this.General.Text = "General";
-            this.General.UseVisualStyleBackColor = true;
+            this.chGeneral.AutoSize = true;
+            this.chGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chGeneral.Location = new System.Drawing.Point(372, 242);
+            this.chGeneral.Name = "chGeneral";
+            this.chGeneral.Size = new System.Drawing.Size(63, 19);
+            this.chGeneral.TabIndex = 3;
+            this.chGeneral.Text = "General";
+            this.chGeneral.UseVisualStyleBackColor = true;
             // 
-            // Anime
+            // chAnime
             // 
-            this.Anime.AutoSize = true;
-            this.Anime.Location = new System.Drawing.Point(461, 242);
-            this.Anime.Name = "Anime";
-            this.Anime.Size = new System.Drawing.Size(61, 19);
-            this.Anime.TabIndex = 4;
-            this.Anime.Text = "Anime";
-            this.Anime.UseVisualStyleBackColor = true;
+            this.chAnime.AutoSize = true;
+            this.chAnime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chAnime.Location = new System.Drawing.Point(461, 242);
+            this.chAnime.Name = "chAnime";
+            this.chAnime.Size = new System.Drawing.Size(58, 19);
+            this.chAnime.TabIndex = 4;
+            this.chAnime.Text = "Anime";
+            this.chAnime.UseVisualStyleBackColor = true;
             // 
-            // People
+            // chPeople
             // 
-            this.People.AutoSize = true;
-            this.People.Location = new System.Drawing.Point(550, 242);
-            this.People.Name = "People";
-            this.People.Size = new System.Drawing.Size(62, 19);
-            this.People.TabIndex = 5;
-            this.People.Text = "People";
-            this.People.UseVisualStyleBackColor = true;
+            this.chPeople.AutoSize = true;
+            this.chPeople.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chPeople.Location = new System.Drawing.Point(550, 242);
+            this.chPeople.Name = "chPeople";
+            this.chPeople.Size = new System.Drawing.Size(59, 19);
+            this.chPeople.TabIndex = 5;
+            this.chPeople.Text = "People";
+            this.chPeople.UseVisualStyleBackColor = true;
             // 
-            // SFW
+            // chSFW
             // 
-            this.SFW.AutoSize = true;
-            this.SFW.Location = new System.Drawing.Point(372, 279);
-            this.SFW.Name = "SFW";
-            this.SFW.Size = new System.Drawing.Size(49, 19);
-            this.SFW.TabIndex = 6;
-            this.SFW.Text = "SFW";
-            this.SFW.UseVisualStyleBackColor = true;
+            this.chSFW.AutoSize = true;
+            this.chSFW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chSFW.Location = new System.Drawing.Point(372, 279);
+            this.chSFW.Name = "chSFW";
+            this.chSFW.Size = new System.Drawing.Size(46, 19);
+            this.chSFW.TabIndex = 6;
+            this.chSFW.Text = "SFW";
+            this.chSFW.UseVisualStyleBackColor = true;
             // 
-            // Sketchy
+            // chSketchy
             // 
-            this.Sketchy.AutoSize = true;
-            this.Sketchy.Location = new System.Drawing.Point(461, 279);
-            this.Sketchy.Name = "Sketchy";
-            this.Sketchy.Size = new System.Drawing.Size(67, 19);
-            this.Sketchy.TabIndex = 7;
-            this.Sketchy.Text = "Sketchy";
-            this.Sketchy.UseVisualStyleBackColor = true;
+            this.chSketchy.AutoSize = true;
+            this.chSketchy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chSketchy.Location = new System.Drawing.Point(461, 279);
+            this.chSketchy.Name = "chSketchy";
+            this.chSketchy.Size = new System.Drawing.Size(64, 19);
+            this.chSketchy.TabIndex = 7;
+            this.chSketchy.Text = "Sketchy";
+            this.chSketchy.UseVisualStyleBackColor = true;
             // 
-            // NSFW
+            // chNSFW
             // 
-            this.NSFW.AutoSize = true;
-            this.NSFW.Location = new System.Drawing.Point(550, 279);
-            this.NSFW.Name = "NSFW";
-            this.NSFW.Size = new System.Drawing.Size(58, 19);
-            this.NSFW.TabIndex = 8;
-            this.NSFW.Text = "NSFW";
-            this.NSFW.UseVisualStyleBackColor = true;
+            this.chNSFW.AutoSize = true;
+            this.chNSFW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chNSFW.Location = new System.Drawing.Point(550, 279);
+            this.chNSFW.Name = "chNSFW";
+            this.chNSFW.Size = new System.Drawing.Size(55, 19);
+            this.chNSFW.TabIndex = 8;
+            this.chNSFW.Text = "NSFW";
+            this.chNSFW.UseVisualStyleBackColor = true;
             // 
-            // Search
+            // inSearch
             // 
-            this.Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Search.Location = new System.Drawing.Point(389, 197);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(186, 23);
-            this.Search.TabIndex = 9;
+            this.inSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.inSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.inSearch.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.inSearch.ForeColor = System.Drawing.Color.Aqua;
+            this.inSearch.Location = new System.Drawing.Point(372, 198);
+            this.inSearch.Name = "inSearch";
+            this.inSearch.Size = new System.Drawing.Size(186, 20);
+            this.inSearch.TabIndex = 9;
+            this.inSearch.Text = "Search...";
+            this.inSearch.WordWrap = false;
+            this.inSearch.GotFocus += new System.EventHandler(this.inSearch_GetFocus);
+            this.inSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inSearch_KeyDown);
+            this.inSearch.LostFocus += new System.EventHandler(this.inSearch_LostFocus);
             // 
-            // Set
+            // bSet
             // 
-            this.Set.FlatAppearance.BorderSize = 0;
-            this.Set.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Set.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Set.ForeColor = System.Drawing.Color.Aqua;
-            this.Set.Location = new System.Drawing.Point(389, 105);
-            this.Set.Name = "Set";
-            this.Set.Size = new System.Drawing.Size(186, 35);
-            this.Set.TabIndex = 10;
-            this.Set.Text = "Set background";
-            this.Set.UseVisualStyleBackColor = true;
-            this.Set.Click += new System.EventHandler(this.Set_Click);
+            this.bSet.FlatAppearance.BorderSize = 0;
+            this.bSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bSet.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.bSet.ForeColor = System.Drawing.Color.Aqua;
+            this.bSet.Location = new System.Drawing.Point(389, 105);
+            this.bSet.Name = "bSet";
+            this.bSet.Size = new System.Drawing.Size(186, 35);
+            this.bSet.TabIndex = 10;
+            this.bSet.Text = "Set background";
+            this.bSet.UseVisualStyleBackColor = true;
+            this.bSet.Click += new System.EventHandler(this.setButton_Click);
+            // 
+            // bPrevious
+            // 
+            this.bPrevious.FlatAppearance.BorderSize = 0;
+            this.bPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bPrevious.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.bPrevious.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.bPrevious.Location = new System.Drawing.Point(389, 55);
+            this.bPrevious.Name = "bPrevious";
+            this.bPrevious.Size = new System.Drawing.Size(100, 33);
+            this.bPrevious.TabIndex = 2;
+            this.bPrevious.Text = "Previous";
+            this.bPrevious.UseVisualStyleBackColor = true;
+            this.bPrevious.Click += new System.EventHandler(this.nextButton_Click);
+            // 
+            // bSettings
+            // 
+            this.bSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bSettings.BackgroundImage")));
+            this.bSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bSettings.FlatAppearance.BorderSize = 0;
+            this.bSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.bSettings.Location = new System.Drawing.Point(606, 12);
+            this.bSettings.Name = "bSettings";
+            this.bSettings.Size = new System.Drawing.Size(40, 40);
+            this.bSettings.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.bSettings, "Settings");
+            this.bSettings.UseVisualStyleBackColor = true;
+            this.bSettings.Click += new System.EventHandler(this.bSettings_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.textBox1.Location = new System.Drawing.Point(26, 236);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(312, 88);
+            this.textBox1.TabIndex = 12;
+            // 
+            // bClear
+            // 
+            this.bClear.FlatAppearance.BorderSize = 0;
+            this.bClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bClear.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.bClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.bClear.Location = new System.Drawing.Point(564, 187);
+            this.bClear.Name = "bClear";
+            this.bClear.Size = new System.Drawing.Size(50, 43);
+            this.bClear.TabIndex = 2;
+            this.bClear.Text = "Clear";
+            this.bClear.UseVisualStyleBackColor = true;
+            this.bClear.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // MainForm
             // 
@@ -170,19 +250,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(658, 330);
-            this.Controls.Add(this.Set);
-            this.Controls.Add(this.Search);
-            this.Controls.Add(this.NSFW);
-            this.Controls.Add(this.Sketchy);
-            this.Controls.Add(this.SFW);
-            this.Controls.Add(this.People);
-            this.Controls.Add(this.Anime);
-            this.Controls.Add(this.General);
-            this.Controls.Add(this.buttonNext);
-            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.bClear);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.bSettings);
+            this.Controls.Add(this.bPrevious);
+            this.Controls.Add(this.bSet);
+            this.Controls.Add(this.inSearch);
+            this.Controls.Add(this.chNSFW);
+            this.Controls.Add(this.chSketchy);
+            this.Controls.Add(this.chSFW);
+            this.Controls.Add(this.chPeople);
+            this.Controls.Add(this.chAnime);
+            this.Controls.Add(this.chGeneral);
+            this.Controls.Add(this.bNext);
+            this.Controls.Add(this.bSave);
             this.Controls.Add(this.pictureBoxActive);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxActive)).EndInit();
@@ -194,16 +279,21 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxActive;
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Button buttonNext;
-        private System.Windows.Forms.CheckBox General;
-        private System.Windows.Forms.CheckBox Anime;
-        private System.Windows.Forms.CheckBox People;
-        private System.Windows.Forms.CheckBox SFW;
-        private System.Windows.Forms.CheckBox Sketchy;
-        private System.Windows.Forms.CheckBox NSFW;
-        private System.Windows.Forms.TextBox Search;
-        private System.Windows.Forms.Button Set;
+        private System.Windows.Forms.Button bSave;
+        private System.Windows.Forms.Button bNext;
+        private System.Windows.Forms.CheckBox chGeneral;
+        private System.Windows.Forms.CheckBox chAnime;
+        private System.Windows.Forms.CheckBox chPeople;
+        private System.Windows.Forms.CheckBox chSFW;
+        private System.Windows.Forms.CheckBox chSketchy;
+        private System.Windows.Forms.CheckBox chNSFW;
+        private System.Windows.Forms.TextBox inSearch;
+        private System.Windows.Forms.Button bSet;
+        private System.Windows.Forms.Button bPrevious;
+        private System.Windows.Forms.Button bSettings;
+        private ToolTip toolTip1;
+        private TextBox textBox1;
+        private Button bClear;
     }
 }
 

@@ -10,16 +10,13 @@ namespace wallpaper_forms.Services
     {
 
         private static string sourcePath = @"";
-        private static string targetDir = @"D:\Cloud\Tapety\App\";
-
 
         public static int SaveImage(Image img, string fileName)
         {
             sourcePath = fileName;
-            string targetPath = targetDir + fileName;
+            string targetPath = AppSettings.DirectoryPath + "\\" + fileName;
             img.Save(sourcePath);
 
-            
 
             try
             {
@@ -42,7 +39,7 @@ namespace wallpaper_forms.Services
             }
             catch (Exception e)
             {
-                MessageBoxService.Show($"The process failed: {e.ToString()}");
+                MessageBoxService.Show($"The process failed: {e}");
                 return -1;
             }
         }

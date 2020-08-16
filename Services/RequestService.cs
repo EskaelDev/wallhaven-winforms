@@ -14,7 +14,7 @@ namespace wallpaper_forms.Services
 {
     public static class RequestService
     {
-        public static async Task DownloadImage(string searchText)
+        public static async Task RequestImageDetails(string searchText)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace wallpaper_forms.Services
                     }
                 }
 
-                string searchURL = Settings.WallhavenUri + searchChain;
+                string searchURL = AppSettings.WallhavenUri + searchChain;
 
                 var response = await WallhavenApiService.Get(searchURL, null);
                 var responseModel = JsonSerializer.Deserialize<WallhavenResponse>(response, new JsonSerializerOptions
@@ -37,8 +37,11 @@ namespace wallpaper_forms.Services
                 });
 
                 GlobalVariables.PhotoURL = responseModel.Data[0].Path;
-                GlobalVariables.ThimbNailURL = responseModel.Data[0].Thumbs.Original;
+                GlobalVariables.ThumbnailURL = responseModel.Data[0].Thumbs.Original;
                 GlobalVariables.CurrentImageId = responseModel.Data[0].Id;
+                GlobalVariables.CurrentImageDetails = $"ID: {responseModel.Data[0].Id}\r\n"
+                                                    + $"Resolution: {responseModel.Data[0].Resolution}\r\n"
+                                                    + $"Url: { responseModel.Data[0].Url}";
             }
             catch (Exception exception)
             {
@@ -51,13 +54,13 @@ namespace wallpaper_forms.Services
             return new WallhavenRequest()
             {
                 Q = searchText,
-                AtLeast = Settings.LeastResolution,
-                Categories = Settings.Categories,
-                Purity = Settings.Putiry,
-                Ratios = Settings.Ratio,
+                AtLeast = AppSettings.LeastResolution,
+                Categories = AppSettings.Categories,
+                Purity = AppSettings.Putiry,
+                Ratios = AppSettings.Ratio,
                 Sorting = Sorting.Random,
-                Page = Settings.Page,
-                Seed = Settings.Seed
+                Page = AppSettings.Page,
+                Seed = AppSettings.Seed
             };
         }
         public static string BuildCategoryString(CheckBox General, CheckBox Anime, CheckBox People)
