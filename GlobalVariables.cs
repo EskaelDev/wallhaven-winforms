@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using wallpaper_forms.Models;
+using System.Windows.Forms;
 
 namespace wallpaper_forms
 {
@@ -15,5 +16,7 @@ namespace wallpaper_forms
         public static Image FullImage;
         public static string SearchBoxPlaceholderText => "Search...";
         public static bool Logged = false;
+        public static string screenWidth => Screen.PrimaryScreen.Bounds.Width.ToString();
+        public static string screenHeight => Screen.PrimaryScreen.Bounds.Height.ToString();
     }
 }

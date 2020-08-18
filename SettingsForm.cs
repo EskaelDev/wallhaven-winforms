@@ -14,7 +14,30 @@ namespace wallpaper_forms
         public SettingsForm()
         {
             InitializeComponent();
+            InitComponents();
+        }
+
+        private void InitComponents()
+        {
             lSelectedPath.Text = AppSettings.DirectoryPath;
+
+            for (int i = 0; i < chkListRatios.Items.Count; i++)
+            {
+                if (chkListRatios.Items[i].Equals(AppSettings.Ratio))
+                {
+                    chkListRatios.SetItemChecked(i, true);
+                    break;
+                }
+            }
+
+            for (int i = 0; i < chkListResolutions.Items.Count; i++)
+            {
+                if (chkListResolutions.Items[i].Equals(AppSettings.LeastResolution))
+                {
+                    chkListResolutions.SetItemChecked(i, true);
+                    break;
+                }
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -22,21 +45,9 @@ namespace wallpaper_forms
             this.Close();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private async void saveButton_Click(object sender, EventArgs e)
         {
-            string ratio, resolution;
-            if (chkListRatios.CheckedItems.Count > 0)
-                ratio = chkListRatios.CheckedItems[0].ToString();
-            else
-                ratio = AppSettings.DefaultRatio;
-
-            if (chkListResolutions.CheckedItems.Count > 0)
-                resolution = chkListResolutions.CheckedItems[0].ToString();
-            else
-                resolution = AppSettings.DefaultResolution;
-
-            AppSettings.Save(lSelectedPath.Text, ratio, resolution);
-
+            await AppSettings.Save(lSelectedPath.Text, chkListRatios.CheckedItems[0].ToString(), chkListResolutions.CheckedItems[0].ToString());
             this.Close();
         }
 

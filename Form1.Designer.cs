@@ -47,8 +47,9 @@ namespace wallpaper_forms
             this.bPrevious = new System.Windows.Forms.Button();
             this.bSettings = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBoxDescription = new System.Windows.Forms.TextBox();
             this.bClear = new System.Windows.Forms.Button();
+            this.txtBoxResolution = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxActive)).BeginInit();
             this.SuspendLayout();
             // 
@@ -190,6 +191,7 @@ namespace wallpaper_forms
             // 
             // bPrevious
             // 
+            this.bPrevious.Enabled = false;
             this.bPrevious.FlatAppearance.BorderSize = 0;
             this.bPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bPrevious.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -217,18 +219,18 @@ namespace wallpaper_forms
             this.bSettings.UseVisualStyleBackColor = true;
             this.bSettings.Click += new System.EventHandler(this.bSettings_Click);
             // 
-            // textBox1
+            // txtBoxDescription
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.textBox1.Location = new System.Drawing.Point(26, 236);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(312, 88);
-            this.textBox1.TabIndex = 12;
+            this.txtBoxDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.txtBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtBoxDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.txtBoxDescription.Location = new System.Drawing.Point(26, 236);
+            this.txtBoxDescription.Multiline = true;
+            this.txtBoxDescription.Name = "txtBoxDescription";
+            this.txtBoxDescription.ReadOnly = true;
+            this.txtBoxDescription.Size = new System.Drawing.Size(312, 88);
+            this.txtBoxDescription.TabIndex = 12;
             // 
             // bClear
             // 
@@ -244,14 +246,28 @@ namespace wallpaper_forms
             this.bClear.UseVisualStyleBackColor = true;
             this.bClear.Click += new System.EventHandler(this.clearButton_Click);
             // 
+            // txtBoxResolution
+            // 
+            this.txtBoxResolution.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.txtBoxResolution.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxResolution.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtBoxResolution.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.txtBoxResolution.Location = new System.Drawing.Point(26, 25);
+            this.txtBoxResolution.Multiline = true;
+            this.txtBoxResolution.Name = "txtBoxResolution";
+            this.txtBoxResolution.ReadOnly = true;
+            this.txtBoxResolution.Size = new System.Drawing.Size(312, 27);
+            this.txtBoxResolution.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(658, 330);
+            this.Controls.Add(this.txtBoxResolution);
             this.Controls.Add(this.bClear);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtBoxDescription);
             this.Controls.Add(this.bSettings);
             this.Controls.Add(this.bPrevious);
             this.Controls.Add(this.bSet);
@@ -292,8 +308,9 @@ namespace wallpaper_forms
         private System.Windows.Forms.Button bPrevious;
         private System.Windows.Forms.Button bSettings;
         private ToolTip toolTip1;
-        private TextBox textBox1;
+        private TextBox txtBoxDescription;
         private Button bClear;
+        private TextBox txtBoxResolution;
     }
 }
 

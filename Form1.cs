@@ -22,10 +22,13 @@ namespace wallpaper_forms
             InitComponents();
         }
 
-        private void InitComponents()
+        private async void InitComponents()
         {
+            await AppSettings.CreateDefaultOnStartup();
+            AppSettings.LoadFromFile();
             chNSFW.Enabled = GlobalVariables.Logged;
             inSearch.Text = GlobalVariables.SearchBoxPlaceholderText;
+            txtBoxResolution.Text = ("Current resolution: " + GlobalVariables.screenWidth + "x" + GlobalVariables.screenHeight);
         }
 
         private async void nextButton_Click(object sender, EventArgs e)
@@ -59,7 +62,7 @@ namespace wallpaper_forms
 
             Image image = await ImageService.GetImage(GlobalVariables.ThumbnailURL);
             pictureBoxActive.Image = image;
-            textBox1.Text = GlobalVariables.CurrentImageDetails;
+            txtBoxDescription.Text = GlobalVariables.CurrentImageDetails;
             bSave.Text = "Save";
             bSave.Enabled = true;
         }
