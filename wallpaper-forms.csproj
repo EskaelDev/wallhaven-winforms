@@ -5,6 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>wallpaper_forms</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <StartupObject>wallpaper_forms.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

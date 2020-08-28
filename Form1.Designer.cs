@@ -56,9 +56,10 @@ namespace wallpaper_forms
             // pictureBoxActive
             // 
             this.pictureBoxActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.pictureBoxActive.Location = new System.Drawing.Point(26, 55);
+            this.pictureBoxActive.Location = new System.Drawing.Point(37, 92);
+            this.pictureBoxActive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBoxActive.Name = "pictureBoxActive";
-            this.pictureBoxActive.Size = new System.Drawing.Size(312, 175);
+            this.pictureBoxActive.Size = new System.Drawing.Size(446, 292);
             this.pictureBoxActive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxActive.TabIndex = 0;
             this.pictureBoxActive.TabStop = false;
@@ -71,9 +72,10 @@ namespace wallpaper_forms
             this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.bSave.Location = new System.Drawing.Point(389, 146);
+            this.bSave.Location = new System.Drawing.Point(556, 243);
+            this.bSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bSave.Name = "bSave";
-            this.bSave.Size = new System.Drawing.Size(186, 35);
+            this.bSave.Size = new System.Drawing.Size(266, 58);
             this.bSave.TabIndex = 1;
             this.bSave.Text = "Save";
             this.bSave.UseVisualStyleBackColor = false;
@@ -85,9 +87,10 @@ namespace wallpaper_forms
             this.bNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bNext.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.bNext.Location = new System.Drawing.Point(513, 55);
+            this.bNext.Location = new System.Drawing.Point(733, 92);
+            this.bNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bNext.Name = "bNext";
-            this.bNext.Size = new System.Drawing.Size(95, 33);
+            this.bNext.Size = new System.Drawing.Size(136, 55);
             this.bNext.TabIndex = 2;
             this.bNext.Text = "Next";
             this.bNext.UseVisualStyleBackColor = true;
@@ -97,9 +100,10 @@ namespace wallpaper_forms
             // 
             this.chGeneral.AutoSize = true;
             this.chGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chGeneral.Location = new System.Drawing.Point(372, 242);
+            this.chGeneral.Location = new System.Drawing.Point(531, 403);
+            this.chGeneral.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chGeneral.Name = "chGeneral";
-            this.chGeneral.Size = new System.Drawing.Size(63, 19);
+            this.chGeneral.Size = new System.Drawing.Size(92, 29);
             this.chGeneral.TabIndex = 3;
             this.chGeneral.Text = "General";
             this.chGeneral.UseVisualStyleBackColor = true;
@@ -108,9 +112,10 @@ namespace wallpaper_forms
             // 
             this.chAnime.AutoSize = true;
             this.chAnime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chAnime.Location = new System.Drawing.Point(461, 242);
+            this.chAnime.Location = new System.Drawing.Point(659, 403);
+            this.chAnime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chAnime.Name = "chAnime";
-            this.chAnime.Size = new System.Drawing.Size(58, 19);
+            this.chAnime.Size = new System.Drawing.Size(84, 29);
             this.chAnime.TabIndex = 4;
             this.chAnime.Text = "Anime";
             this.chAnime.UseVisualStyleBackColor = true;
@@ -119,9 +124,10 @@ namespace wallpaper_forms
             // 
             this.chPeople.AutoSize = true;
             this.chPeople.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chPeople.Location = new System.Drawing.Point(550, 242);
+            this.chPeople.Location = new System.Drawing.Point(786, 403);
+            this.chPeople.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chPeople.Name = "chPeople";
-            this.chPeople.Size = new System.Drawing.Size(59, 19);
+            this.chPeople.Size = new System.Drawing.Size(86, 29);
             this.chPeople.TabIndex = 5;
             this.chPeople.Text = "People";
             this.chPeople.UseVisualStyleBackColor = true;
@@ -130,9 +136,10 @@ namespace wallpaper_forms
             // 
             this.chSFW.AutoSize = true;
             this.chSFW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chSFW.Location = new System.Drawing.Point(372, 279);
+            this.chSFW.Location = new System.Drawing.Point(531, 465);
+            this.chSFW.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chSFW.Name = "chSFW";
-            this.chSFW.Size = new System.Drawing.Size(46, 19);
+            this.chSFW.Size = new System.Drawing.Size(69, 29);
             this.chSFW.TabIndex = 6;
             this.chSFW.Text = "SFW";
             this.chSFW.UseVisualStyleBackColor = true;
@@ -141,9 +148,10 @@ namespace wallpaper_forms
             // 
             this.chSketchy.AutoSize = true;
             this.chSketchy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chSketchy.Location = new System.Drawing.Point(461, 279);
+            this.chSketchy.Location = new System.Drawing.Point(659, 465);
+            this.chSketchy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chSketchy.Name = "chSketchy";
-            this.chSketchy.Size = new System.Drawing.Size(64, 19);
+            this.chSketchy.Size = new System.Drawing.Size(94, 29);
             this.chSketchy.TabIndex = 7;
             this.chSketchy.Text = "Sketchy";
             this.chSketchy.UseVisualStyleBackColor = true;
@@ -152,9 +160,10 @@ namespace wallpaper_forms
             // 
             this.chNSFW.AutoSize = true;
             this.chNSFW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chNSFW.Location = new System.Drawing.Point(550, 279);
+            this.chNSFW.Location = new System.Drawing.Point(786, 465);
+            this.chNSFW.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chNSFW.Name = "chNSFW";
-            this.chNSFW.Size = new System.Drawing.Size(55, 19);
+            this.chNSFW.Size = new System.Drawing.Size(82, 29);
             this.chNSFW.TabIndex = 8;
             this.chNSFW.Text = "NSFW";
             this.chNSFW.UseVisualStyleBackColor = true;
@@ -165,9 +174,10 @@ namespace wallpaper_forms
             this.inSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.inSearch.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.inSearch.ForeColor = System.Drawing.Color.Aqua;
-            this.inSearch.Location = new System.Drawing.Point(372, 198);
+            this.inSearch.Location = new System.Drawing.Point(531, 330);
+            this.inSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.inSearch.Name = "inSearch";
-            this.inSearch.Size = new System.Drawing.Size(186, 20);
+            this.inSearch.Size = new System.Drawing.Size(266, 30);
             this.inSearch.TabIndex = 9;
             this.inSearch.Text = "Search...";
             this.inSearch.WordWrap = false;
@@ -181,9 +191,10 @@ namespace wallpaper_forms
             this.bSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSet.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bSet.ForeColor = System.Drawing.Color.Aqua;
-            this.bSet.Location = new System.Drawing.Point(389, 105);
+            this.bSet.Location = new System.Drawing.Point(556, 175);
+            this.bSet.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bSet.Name = "bSet";
-            this.bSet.Size = new System.Drawing.Size(186, 35);
+            this.bSet.Size = new System.Drawing.Size(266, 58);
             this.bSet.TabIndex = 10;
             this.bSet.Text = "Set background";
             this.bSet.UseVisualStyleBackColor = true;
@@ -196,9 +207,10 @@ namespace wallpaper_forms
             this.bPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bPrevious.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bPrevious.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.bPrevious.Location = new System.Drawing.Point(389, 55);
+            this.bPrevious.Location = new System.Drawing.Point(556, 92);
+            this.bPrevious.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bPrevious.Name = "bPrevious";
-            this.bPrevious.Size = new System.Drawing.Size(100, 33);
+            this.bPrevious.Size = new System.Drawing.Size(143, 55);
             this.bPrevious.TabIndex = 2;
             this.bPrevious.Text = "Previous";
             this.bPrevious.UseVisualStyleBackColor = true;
@@ -211,9 +223,10 @@ namespace wallpaper_forms
             this.bSettings.FlatAppearance.BorderSize = 0;
             this.bSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.bSettings.Location = new System.Drawing.Point(606, 12);
+            this.bSettings.Location = new System.Drawing.Point(866, 20);
+            this.bSettings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bSettings.Name = "bSettings";
-            this.bSettings.Size = new System.Drawing.Size(40, 40);
+            this.bSettings.Size = new System.Drawing.Size(57, 67);
             this.bSettings.TabIndex = 11;
             this.toolTip1.SetToolTip(this.bSettings, "Settings");
             this.bSettings.UseVisualStyleBackColor = true;
@@ -225,11 +238,12 @@ namespace wallpaper_forms
             this.txtBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtBoxDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtBoxDescription.Location = new System.Drawing.Point(26, 236);
+            this.txtBoxDescription.Location = new System.Drawing.Point(37, 393);
+            this.txtBoxDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxDescription.Multiline = true;
             this.txtBoxDescription.Name = "txtBoxDescription";
             this.txtBoxDescription.ReadOnly = true;
-            this.txtBoxDescription.Size = new System.Drawing.Size(312, 88);
+            this.txtBoxDescription.Size = new System.Drawing.Size(446, 147);
             this.txtBoxDescription.TabIndex = 12;
             // 
             // bClear
@@ -238,9 +252,10 @@ namespace wallpaper_forms
             this.bClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bClear.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.bClear.Location = new System.Drawing.Point(564, 187);
+            this.bClear.Location = new System.Drawing.Point(806, 312);
+            this.bClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bClear.Name = "bClear";
-            this.bClear.Size = new System.Drawing.Size(50, 43);
+            this.bClear.Size = new System.Drawing.Size(71, 72);
             this.bClear.TabIndex = 2;
             this.bClear.Text = "Clear";
             this.bClear.UseVisualStyleBackColor = true;
@@ -252,19 +267,20 @@ namespace wallpaper_forms
             this.txtBoxResolution.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxResolution.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtBoxResolution.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtBoxResolution.Location = new System.Drawing.Point(26, 25);
+            this.txtBoxResolution.Location = new System.Drawing.Point(37, 42);
+            this.txtBoxResolution.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxResolution.Multiline = true;
             this.txtBoxResolution.Name = "txtBoxResolution";
             this.txtBoxResolution.ReadOnly = true;
-            this.txtBoxResolution.Size = new System.Drawing.Size(312, 27);
+            this.txtBoxResolution.Size = new System.Drawing.Size(446, 45);
             this.txtBoxResolution.TabIndex = 12;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(658, 330);
+            this.ClientSize = new System.Drawing.Size(940, 550);
             this.Controls.Add(this.txtBoxResolution);
             this.Controls.Add(this.bClear);
             this.Controls.Add(this.txtBoxDescription);
@@ -282,6 +298,8 @@ namespace wallpaper_forms
             this.Controls.Add(this.bSave);
             this.Controls.Add(this.pictureBoxActive);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wallhaven";

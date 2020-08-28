@@ -38,6 +38,7 @@ namespace wallpaper_forms
                     break;
                 }
             }
+            lSelectedPath.ReadOnly = true;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
