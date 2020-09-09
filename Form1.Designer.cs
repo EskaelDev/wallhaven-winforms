@@ -278,6 +278,7 @@ namespace wallpaper_forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(659, 331);
+            this.Controls.Add(this.largePicture);
             this.Controls.Add(this.txtBoxResolution);
             this.Controls.Add(this.bClear);
             this.Controls.Add(this.txtBoxDescription);
@@ -294,7 +295,6 @@ namespace wallpaper_forms
             this.Controls.Add(this.bNext);
             this.Controls.Add(this.bSave);
             this.Controls.Add(this.pictureBoxActive);
-            this.Controls.Add(this.largePicture);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
