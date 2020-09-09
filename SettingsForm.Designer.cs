@@ -38,6 +38,7 @@
             this.lRatio = new System.Windows.Forms.Label();
             this.bChangePath = new System.Windows.Forms.Button();
             this.lSelectedPath = new System.Windows.Forms.TextBox();
+            this.bOpenPath = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lPath
@@ -45,10 +46,9 @@
             this.lPath.AutoSize = true;
             this.lPath.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lPath.Location = new System.Drawing.Point(80, 112);
-            this.lPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lPath.Location = new System.Drawing.Point(56, 67);
             this.lPath.Name = "lPath";
-            this.lPath.Size = new System.Drawing.Size(69, 32);
+            this.lPath.Size = new System.Drawing.Size(46, 21);
             this.lPath.TabIndex = 0;
             this.lPath.Text = "Path:";
             // 
@@ -58,10 +58,9 @@
             this.bSettingsSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSettingsSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bSettingsSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.bSettingsSave.Location = new System.Drawing.Point(167, 638);
-            this.bSettingsSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bSettingsSave.Location = new System.Drawing.Point(117, 383);
             this.bSettingsSave.Name = "bSettingsSave";
-            this.bSettingsSave.Size = new System.Drawing.Size(143, 55);
+            this.bSettingsSave.Size = new System.Drawing.Size(100, 33);
             this.bSettingsSave.TabIndex = 2;
             this.bSettingsSave.Text = "Save";
             this.bSettingsSave.UseVisualStyleBackColor = true;
@@ -73,10 +72,9 @@
             this.bSettingsCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSettingsCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bSettingsCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.bSettingsCancel.Location = new System.Drawing.Point(474, 638);
-            this.bSettingsCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bSettingsCancel.Location = new System.Drawing.Point(332, 383);
             this.bSettingsCancel.Name = "bSettingsCancel";
-            this.bSettingsCancel.Size = new System.Drawing.Size(143, 55);
+            this.bSettingsCancel.Size = new System.Drawing.Size(100, 33);
             this.bSettingsCancel.TabIndex = 2;
             this.bSettingsCancel.Text = "Cancel";
             this.bSettingsCancel.UseVisualStyleBackColor = true;
@@ -115,11 +113,10 @@
             "3840x2400",
             "3840x2880",
             "3840x3072"});
-            this.chkListResolutions.Location = new System.Drawing.Point(137, 235);
-            this.chkListResolutions.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chkListResolutions.Location = new System.Drawing.Point(84, 141);
             this.chkListResolutions.MultiColumn = true;
             this.chkListResolutions.Name = "chkListResolutions";
-            this.chkListResolutions.Size = new System.Drawing.Size(231, 336);
+            this.chkListResolutions.Size = new System.Drawing.Size(162, 216);
             this.chkListResolutions.Sorted = true;
             this.chkListResolutions.TabIndex = 3;
             this.chkListResolutions.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkListResolutions_ItemCheck);
@@ -144,10 +141,9 @@
             "3x2",
             "4x3",
             "5x4"});
-            this.chkListRatios.Location = new System.Drawing.Point(474, 235);
-            this.chkListRatios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chkListRatios.Location = new System.Drawing.Point(332, 141);
             this.chkListRatios.Name = "chkListRatios";
-            this.chkListRatios.Size = new System.Drawing.Size(117, 336);
+            this.chkListRatios.Size = new System.Drawing.Size(82, 216);
             this.chkListRatios.TabIndex = 4;
             this.chkListRatios.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkListRatios_ItemCheck);
             // 
@@ -156,10 +152,9 @@
             this.lResolution.AutoSize = true;
             this.lResolution.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lResolution.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lResolution.Location = new System.Drawing.Point(137, 195);
-            this.lResolution.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lResolution.Location = new System.Drawing.Point(96, 117);
             this.lResolution.Name = "lResolution";
-            this.lResolution.Size = new System.Drawing.Size(224, 32);
+            this.lResolution.Size = new System.Drawing.Size(150, 21);
             this.lResolution.TabIndex = 0;
             this.lResolution.Text = "Resolution(at least)";
             // 
@@ -168,10 +163,9 @@
             this.lRatio.AutoSize = true;
             this.lRatio.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lRatio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lRatio.Location = new System.Drawing.Point(496, 195);
-            this.lRatio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lRatio.Location = new System.Drawing.Point(347, 117);
             this.lRatio.Name = "lRatio";
-            this.lRatio.Size = new System.Drawing.Size(71, 32);
+            this.lRatio.Size = new System.Drawing.Size(48, 21);
             this.lRatio.TabIndex = 0;
             this.lRatio.Text = "Ratio";
             // 
@@ -181,10 +175,9 @@
             this.bChangePath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bChangePath.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.bChangePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.bChangePath.Location = new System.Drawing.Point(591, 102);
-            this.bChangePath.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bChangePath.Location = new System.Drawing.Point(414, 61);
             this.bChangePath.Name = "bChangePath";
-            this.bChangePath.Size = new System.Drawing.Size(120, 55);
+            this.bChangePath.Size = new System.Drawing.Size(84, 33);
             this.bChangePath.TabIndex = 2;
             this.bChangePath.Text = "Change";
             this.bChangePath.UseVisualStyleBackColor = true;
@@ -197,18 +190,34 @@
             this.lSelectedPath.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lSelectedPath.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lSelectedPath.ForeColor = System.Drawing.Color.Aqua;
-            this.lSelectedPath.Location = new System.Drawing.Point(167, 114);
+            this.lSelectedPath.Location = new System.Drawing.Point(117, 68);
+            this.lSelectedPath.Margin = new System.Windows.Forms.Padding(2);
             this.lSelectedPath.Name = "lSelectedPath";
-            this.lSelectedPath.Size = new System.Drawing.Size(410, 30);
+            this.lSelectedPath.Size = new System.Drawing.Size(287, 20);
             this.lSelectedPath.TabIndex = 5;
+            // 
+            // bOpenPath
+            // 
+            this.bOpenPath.FlatAppearance.BorderSize = 0;
+            this.bOpenPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bOpenPath.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.bOpenPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.bOpenPath.Location = new System.Drawing.Point(414, 100);
+            this.bOpenPath.Name = "bOpenPath";
+            this.bOpenPath.Size = new System.Drawing.Size(84, 33);
+            this.bOpenPath.TabIndex = 2;
+            this.bOpenPath.Text = "Open";
+            this.bOpenPath.UseVisualStyleBackColor = true;
+            this.bOpenPath.Click += new System.EventHandler(this.openPath_Click);
             // 
             // SettingsForm
             // 
             this.AccessibleName = "lSelectedPath";
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(799, 768);
+            this.ClientSize = new System.Drawing.Size(559, 461);
+            this.Controls.Add(this.bOpenPath);
             this.Controls.Add(this.lSelectedPath);
             this.Controls.Add(this.bChangePath);
             this.Controls.Add(this.lRatio);
@@ -218,7 +227,7 @@
             this.Controls.Add(this.bSettingsCancel);
             this.Controls.Add(this.bSettingsSave);
             this.Controls.Add(this.lPath);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
@@ -239,5 +248,6 @@
         private System.Windows.Forms.Label lRatio;
         private System.Windows.Forms.Button bChangePath;
         private System.Windows.Forms.TextBox lSelectedPath;
+        private System.Windows.Forms.Button bOpenPath;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -19,6 +20,7 @@ namespace wallpaper_forms
 
         private void InitComponents()
         {
+            
             lSelectedPath.Text = AppSettings.DirectoryPath;
 
             for (int i = 0; i < chkListRatios.Items.Count; i++)
@@ -64,6 +66,11 @@ namespace wallpaper_forms
         private void chkListRatios_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             SelectOneCheckboxInList((CheckedListBox)sender, e, ref RatiosLastCheckedIndex);
+        }
+
+        private void openPath_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", AppSettings.DirectoryPath);
         }
 
         private void SelectOneCheckboxInList(CheckedListBox listBox, ItemCheckEventArgs e, ref int lastIndex)

@@ -24,6 +24,7 @@ namespace wallpaper_forms
 
         private async void InitComponents()
         {
+            
             await AppSettings.CreateDefaultOnStartup();
             AppSettings.LoadFromFile();
             chNSFW.Enabled = GlobalVariables.Logged;

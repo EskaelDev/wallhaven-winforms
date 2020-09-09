@@ -15,9 +15,7 @@ namespace wallpaper_forms.Services
             // Initializes the variables to pass to the MessageBox.Show method.
             string caption = "Error";
             MessageBoxButtons buttons = MessageBoxButtons.OK;
-            DialogResult result;
-
-
+            //DialogResult result;
 
             // Displays the MessageBox.
             MessageBox.Show(message, caption, buttons);
