@@ -205,7 +205,7 @@ namespace wallpaper_forms
             this.bPrevious.TabIndex = 2;
             this.bPrevious.Text = "Previous";
             this.bPrevious.UseVisualStyleBackColor = true;
-            this.bPrevious.Click += new System.EventHandler(this.nextButton_Click);
+            this.bPrevious.Click += new System.EventHandler(this.previousButton_Click);
             // 
             // bSettings
             // 
@@ -269,6 +269,7 @@ namespace wallpaper_forms
             this.largePicture.Size = new System.Drawing.Size(660, 335);
             this.largePicture.TabIndex = 13;
             this.largePicture.TabStop = false;
+            this.largePicture.Visible = false;
             this.largePicture.Click += new System.EventHandler(this.largePicture_Click);
             // 
             // MainForm
@@ -277,7 +278,6 @@ namespace wallpaper_forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(659, 331);
-            this.Controls.Add(this.largePicture);
             this.Controls.Add(this.txtBoxResolution);
             this.Controls.Add(this.bClear);
             this.Controls.Add(this.txtBoxDescription);
@@ -294,6 +294,7 @@ namespace wallpaper_forms
             this.Controls.Add(this.bNext);
             this.Controls.Add(this.bSave);
             this.Controls.Add(this.pictureBoxActive);
+            this.Controls.Add(this.largePicture);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

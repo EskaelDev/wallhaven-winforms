@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using wallpaper_forms.Services;
 
 namespace wallpaper_forms
 {
@@ -20,7 +21,7 @@ namespace wallpaper_forms
 
         private void InitComponents()
         {
-            
+
             lSelectedPath.Text = AppSettings.DirectoryPath;
 
             for (int i = 0; i < chkListRatios.Items.Count; i++)
@@ -50,8 +51,16 @@ namespace wallpaper_forms
 
         private async void saveButton_Click(object sender, EventArgs e)
         {
-            await AppSettings.Save(lSelectedPath.Text, chkListRatios.CheckedItems[0].ToString(), chkListResolutions.CheckedItems[0].ToString());
-            this.Close();
+            if (chkListResolutions.CheckedItems.Count <= 0)
+                MessageBoxService.Show("Select resolution");
+            else
+            if (chkListRatios.CheckedItems.Count <= 0)
+                MessageBoxService.Show("Select ratio");
+            else
+            {
+                await AppSettings.Save(lSelectedPath.Text, chkListRatios.CheckedItems[0].ToString(), chkListResolutions.CheckedItems[0].ToString());
+                this.Close();
+            }
         }
 
         private void changePath_Click(object sender, EventArgs e)

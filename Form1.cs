@@ -15,6 +15,7 @@ namespace wallpaper_forms
     public partial class MainForm : Form
     {
         private Point location;
+        private int imageIndex;
 
         public MainForm()
         {
@@ -24,6 +25,9 @@ namespace wallpaper_forms
 
         private async void InitComponents()
         {
+            GlobalVariables.Visited = new System.Collections.Generic.List<ImageDetails>();
+            imageIndex = 0;
+            bPrevious.Enabled = false;
             largePicture.Visible = false;
             largePicture.SizeMode = PictureBoxSizeMode.Zoom;
             await AppSettings.CreateDefaultOnStartup();
@@ -35,7 +39,15 @@ namespace wallpaper_forms
 
         private async void nextButton_Click(object sender, EventArgs e)
         {
-            await LoadWallpaper();
+            imageIndex++;
+            if (GlobalVariables.Visited.Count <= imageIndex)
+                await LoadWallpaper();
+            else
+            {
+                GlobalVariables.CurrentImage = GlobalVariables.Visited[imageIndex];
+                ApplyImage();
+            }
+            bPrevious.Enabled = true;
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -62,9 +74,10 @@ namespace wallpaper_forms
             else
                 await RequestService.RequestImageDetails(inSearch.Text);
 
-            Image image = await ImageService.GetImage(GlobalVariables.ThumbnailURL);
-            pictureBoxActive.Image = image;
-            txtBoxDescription.Text = GlobalVariables.CurrentImageDetails;
+
+
+            GlobalVariables.CurrentImage.Thumbnail = await ImageService.GetImage(GlobalVariables.CurrentImage.ThumbnailURL);
+            ApplyImage();
             bSave.Text = "Save";
             bSave.Enabled = true;
         }
@@ -79,7 +92,7 @@ namespace wallpaper_forms
         {
             Cursor = Cursors.WaitCursor;
             await AssureImageDownloaded();
-            int result = FileService.SaveImage(GlobalVariables.FullImage, $"{GlobalVariables.CurrentImageId}.png");
+            int result = FileService.SaveImage(GlobalVariables.FullImage, $"{GlobalVariables.CurrentImage.Id}.png");
             if (result == 0)
             {
                 bSave.Text = "Saved";
@@ -91,7 +104,7 @@ namespace wallpaper_forms
         private async Task AssureImageDownloaded()
         {
             if (GlobalVariables.FullImage is null)
-                GlobalVariables.FullImage = await ImageService.GetImage(GlobalVariables.PhotoURL);
+                GlobalVariables.FullImage = await ImageService.GetImage(GlobalVariables.CurrentImage.PhotoURL);
         }
 
         private void inSearch_GetFocus(object sender, EventArgs e)
@@ -136,7 +149,7 @@ namespace wallpaper_forms
             if (pictureBoxActive.Image is null)
                 return;
 
-            Image image = await ImageService.GetImage(GlobalVariables.PhotoURL);
+            Image image = await ImageService.GetImage(GlobalVariables.CurrentImage.PhotoURL);
 
             GlobalVariables.FullImage = image;
 
@@ -166,5 +179,24 @@ namespace wallpaper_forms
             this.Location = location;
         }
 
+        private void previousButton_Click(object sender, EventArgs e)
+        {
+            imageIndex--;
+
+            if (imageIndex >= 0)
+            {
+                GlobalVariables.CurrentImage = GlobalVariables.Visited[imageIndex];
+                GlobalVariables.FullImage = null;
+                ApplyImage();
+            }
+            if (imageIndex <= 0)
+                bPrevious.Enabled = false;
+        }
+
+        private void ApplyImage()
+        {
+            pictureBoxActive.Image = GlobalVariables.CurrentImage.Thumbnail;
+            txtBoxDescription.Text = GlobalVariables.CurrentImage.Description;
+        }
     }
 }

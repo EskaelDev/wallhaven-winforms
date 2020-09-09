@@ -36,12 +36,17 @@ namespace wallpaper_forms.Services
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
 
-                GlobalVariables.PhotoURL = responseModel.Data[0].Path;
-                GlobalVariables.ThumbnailURL = responseModel.Data[0].Thumbs.Original;
-                GlobalVariables.CurrentImageId = responseModel.Data[0].Id;
-                GlobalVariables.CurrentImageDetails = $"ID: {responseModel.Data[0].Id}\r\n"
+
+
+                GlobalVariables.CurrentImage = new ImageDetails();
+                GlobalVariables.CurrentImage.PhotoURL = responseModel.Data[0].Path;
+                GlobalVariables.CurrentImage.ThumbnailURL = responseModel.Data[0].Thumbs.Original;
+                GlobalVariables.CurrentImage.Id = responseModel.Data[0].Id;
+                GlobalVariables.CurrentImage.Description = $"ID: {responseModel.Data[0].Id}\r\n"
                                                     + $"Resolution: {responseModel.Data[0].Resolution}\r\n"
                                                     + $"Url: { responseModel.Data[0].Url}";
+
+                GlobalVariables.Visited.Add(GlobalVariables.CurrentImage);
             }
             catch (Exception exception)
             {
