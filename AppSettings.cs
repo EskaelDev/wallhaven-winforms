@@ -30,6 +30,9 @@ namespace wallpaper_forms
         public static string LeastResolution { get; set; }
         public static string Ratio { get; set; }
 
+        public static int MainFormWidth => 675;
+        public static int MainFormHeight => 350;
+
         public static async Task Save(string path, string ratio, string resolution)
         {
             DirectoryPath = path;

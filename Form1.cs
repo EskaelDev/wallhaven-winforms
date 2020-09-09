@@ -14,7 +14,7 @@ namespace wallpaper_forms
 {
     public partial class MainForm : Form
     {
-
+        private Point location;
 
         public MainForm()
         {
@@ -24,7 +24,8 @@ namespace wallpaper_forms
 
         private async void InitComponents()
         {
-            
+            largePicture.Visible = false;
+            largePicture.SizeMode = PictureBoxSizeMode.Zoom;
             await AppSettings.CreateDefaultOnStartup();
             AppSettings.LoadFromFile();
             chNSFW.Enabled = GlobalVariables.Logged;
@@ -128,5 +129,42 @@ namespace wallpaper_forms
             if (e.KeyCode == Keys.Enter)
                 bNext.PerformClick();
         }
+
+        private async void pictureBoxActive_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            if (pictureBoxActive.Image is null)
+                return;
+
+            Image image = await ImageService.GetImage(GlobalVariables.PhotoURL);
+
+            GlobalVariables.FullImage = image;
+
+            this.MaximumSize = largePicture.MaximumSize = new Size(int.Parse(GlobalVariables.screenWidth) - 500, int.Parse(GlobalVariables.screenWidth) - 500);
+
+            this.Width = image.Width;
+            this.Height = image.Height;
+            largePicture.Width = this.Width;
+            largePicture.Height = this.Height;
+
+            largePicture.Image = image;
+            largePicture.Visible = true;
+
+            location = this.Location;
+            this.Location = new Point(System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width / 2 - largePicture.Width / 2, System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height / 2 - largePicture.Height / 2);
+            Cursor = Cursors.Arrow;
+        }
+
+        private void largePicture_Click(object sender, EventArgs e)
+        {
+            largePicture.Image = null;
+            largePicture.Visible = false;
+
+            this.Width = AppSettings.MainFormWidth;
+            this.Height = AppSettings.MainFormHeight;
+
+            this.Location = location;
+        }
+
     }
 }

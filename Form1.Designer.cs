@@ -50,7 +50,9 @@ namespace wallpaper_forms
             this.txtBoxDescription = new System.Windows.Forms.TextBox();
             this.bClear = new System.Windows.Forms.Button();
             this.txtBoxResolution = new System.Windows.Forms.TextBox();
+            this.largePicture = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxActive)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.largePicture)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBoxActive
@@ -62,6 +64,7 @@ namespace wallpaper_forms
             this.pictureBoxActive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxActive.TabIndex = 0;
             this.pictureBoxActive.TabStop = false;
+            this.pictureBoxActive.Click += new System.EventHandler(this.pictureBoxActive_Click);
             // 
             // bSave
             // 
@@ -259,12 +262,22 @@ namespace wallpaper_forms
             this.txtBoxResolution.Size = new System.Drawing.Size(312, 27);
             this.txtBoxResolution.TabIndex = 12;
             // 
+            // largePicture
+            // 
+            this.largePicture.Location = new System.Drawing.Point(0, 0);
+            this.largePicture.Name = "largePicture";
+            this.largePicture.Size = new System.Drawing.Size(660, 335);
+            this.largePicture.TabIndex = 13;
+            this.largePicture.TabStop = false;
+            this.largePicture.Click += new System.EventHandler(this.largePicture_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(658, 330);
+            this.ClientSize = new System.Drawing.Size(659, 331);
+            this.Controls.Add(this.largePicture);
             this.Controls.Add(this.txtBoxResolution);
             this.Controls.Add(this.bClear);
             this.Controls.Add(this.txtBoxDescription);
@@ -289,6 +302,7 @@ namespace wallpaper_forms
             this.Text = "Wallhaven";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxActive)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.largePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,6 +327,7 @@ namespace wallpaper_forms
         private TextBox txtBoxDescription;
         private Button bClear;
         private TextBox txtBoxResolution;
+        private PictureBox largePicture;
     }
 }
 
