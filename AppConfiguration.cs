@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -11,14 +13,14 @@ using wallpaper_forms.Services;
 
 namespace wallpaper_forms
 {
-    public class AppSettings
+    public class AppConfiguration
     {
-        private static int seedLength => 6;
+        public static int seedLength => 6;
         private static string fileName => "settings.json";
         private static string settingsPath => Directory.GetCurrentDirectory() + "\\" + fileName;
         public static string Page => "1";
         public static string WallhavenUri => "https://wallhaven.cc/api/v1/search";
-        public static string Seed => RandomSeedService.RandomString(seedLength);
+        //public static string Seed => RandomSeedService.RandomString(seedLength);
         private static string DefaultResolution => "2560x1440";
         private static string DefaultRatio => "16x9";
 
@@ -32,6 +34,25 @@ namespace wallpaper_forms
 
         public static int MainFormWidth => 675;
         public static int MainFormHeight => 350;
+
+        private static IMessageBoxService _messageBox;
+        private IHost _host;
+        public IHost Host
+        {
+            set
+            {
+                _host = value;
+                _messageBox = ActivatorUtilities.CreateInstance<MessageBoxService>(_host.Services);
+            }
+        }
+
+
+
+
+        public AppConfiguration()
+        {
+
+        }
 
         public static async Task Save(string path, string ratio, string resolution)
         {
@@ -62,7 +83,7 @@ namespace wallpaper_forms
             }
             catch (Exception e)
             {
-                MessageBoxService.Show($"Saving settings failed: {e}");
+                _messageBox.Show($"Saving settings failed: {e}");
             }
 
         }
@@ -81,7 +102,7 @@ namespace wallpaper_forms
 
         public static async Task CreateDefaultOnStartup()
         {
-            StoredSettings storedSettings = new StoredSettings() { Path = settingsPath, Ratio = DefaultRatio, Resolution = DefaultResolution};
+            StoredSettings storedSettings = new StoredSettings() { Path = settingsPath, Ratio = DefaultRatio, Resolution = DefaultResolution };
 
             try
             {
@@ -98,7 +119,7 @@ namespace wallpaper_forms
             }
             catch (Exception e)
             {
-                MessageBoxService.Show($"Creating settings file failed: {e}");
+                _messageBox.Show($"Creating settings file failed: {e}");
             }
         }
 

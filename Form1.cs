@@ -9,6 +9,8 @@ using System.Reflection;
 using wallpaper_forms.Models;
 using wallpaper_forms.Services;
 using wallpaper_forms.Enums;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace wallpaper_forms
 {
@@ -16,11 +18,29 @@ namespace wallpaper_forms
     {
         private Point location;
         private int imageIndex;
+        private readonly IRequestService _requestService;
+        private readonly IImageService _imageService;
+        private readonly IMessageBoxService _messageBoxService;
+        private readonly IFileService _fileService;
+        private readonly IWallpaperService _wallpaperService;
+        private readonly IWallhavenApiService _wallhavenApiService;
 
-        public MainForm()
+
+
+        private readonly IHost _host;
+
+        public MainForm(IHost host)
         {
             InitializeComponent();
             InitComponents();
+            _host = host;
+            _requestService = ActivatorUtilities.CreateInstance<RequestService>(_host.Services);
+            _imageService = ActivatorUtilities.CreateInstance<ImageService>(_host.Services);
+            _messageBoxService = ActivatorUtilities.CreateInstance<MessageBoxService>(_host.Services);
+            _fileService = ActivatorUtilities.CreateInstance<FileService>(_host.Services);
+            _wallpaperService = ActivatorUtilities.CreateInstance<WallpaperService>(_host.Services);
+            _wallhavenApiService = ActivatorUtilities.CreateInstance<WallhavenApiService>(_host.Services);
+
         }
 
         private async void InitComponents()
@@ -30,8 +50,8 @@ namespace wallpaper_forms
             bPrevious.Enabled = false;
             largePicture.Visible = false;
             largePicture.SizeMode = PictureBoxSizeMode.Zoom;
-            await AppSettings.CreateDefaultOnStartup();
-            AppSettings.LoadFromFile();
+            await AppConfiguration.CreateDefaultOnStartup();
+            AppConfiguration.LoadFromFile();
             chNSFW.Enabled = GlobalVariables.Logged;
             inSearch.Text = GlobalVariables.SearchBoxPlaceholderText;
             txtBoxResolution.Text = ("Current resolution: " + GlobalVariables.screenWidth + "x" + GlobalVariables.screenHeight);
@@ -58,8 +78,8 @@ namespace wallpaper_forms
         private async Task LoadWallpaper()
         {
             Cursor = Cursors.WaitCursor;
-            AppSettings.Categories = RequestService.BuildCategoryString(chGeneral, chAnime, chPeople);
-            AppSettings.Putiry = RequestService.BuildPurityString(chSFW, chSketchy, chNSFW);
+            AppConfiguration.Categories = _requestService.BuildCategoryString(chGeneral, chAnime, chPeople);
+            AppConfiguration.Putiry = _requestService.BuildPurityString(chSFW, chSketchy, chNSFW);
 
             await DownloadWallpaper();
             Cursor = Cursors.Arrow;
@@ -70,13 +90,13 @@ namespace wallpaper_forms
             GlobalVariables.FullImage = null;
 
             if (inSearch.Text.Equals(GlobalVariables.SearchBoxPlaceholderText))
-                await RequestService.RequestImageDetails("");
+                await _requestService.RequestImageDetails("");
             else
-                await RequestService.RequestImageDetails(inSearch.Text);
+                await _requestService.RequestImageDetails(inSearch.Text);
 
 
 
-            GlobalVariables.CurrentImage.Thumbnail = await ImageService.GetImage(GlobalVariables.CurrentImage.ThumbnailURL);
+            GlobalVariables.CurrentImage.Thumbnail = await _imageService.GetImage(GlobalVariables.CurrentImage.ThumbnailURL);
             ApplyImage();
             bSave.Text = "Save";
             bSave.Enabled = true;
@@ -85,14 +105,14 @@ namespace wallpaper_forms
         private async void setButton_Click(object sender, EventArgs e)
         {
             await AssureImageDownloaded();
-            WallpaperService.SetWallpaper(GlobalVariables.FullImage, WallpaperService.Style.Fill);
+            _wallpaperService.SetWallpaper(GlobalVariables.FullImage, WallpaperService.Style.Fill);
         }
 
         private async void saveButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             await AssureImageDownloaded();
-            int result = FileService.SaveImage(GlobalVariables.FullImage, $"{GlobalVariables.CurrentImage.Id}.png");
+            int result = _fileService.SaveImage(GlobalVariables.FullImage, $"{GlobalVariables.CurrentImage.Id}.png");
             if (result == 0)
             {
                 bSave.Text = "Saved";
@@ -104,7 +124,7 @@ namespace wallpaper_forms
         private async Task AssureImageDownloaded()
         {
             if (GlobalVariables.FullImage is null)
-                GlobalVariables.FullImage = await ImageService.GetImage(GlobalVariables.CurrentImage.PhotoURL);
+                GlobalVariables.FullImage = await _imageService.GetImage(GlobalVariables.CurrentImage.PhotoURL);
         }
 
         private void inSearch_GetFocus(object sender, EventArgs e)
@@ -131,7 +151,7 @@ namespace wallpaper_forms
 
         private void bSettings_Click(object sender, EventArgs e)
         {
-            using (SettingsForm settings = new SettingsForm())
+            using (SettingsForm settings = new SettingsForm(_host))
             {
                 settings.ShowDialog(this);
             }
@@ -140,7 +160,10 @@ namespace wallpaper_forms
         private void inSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            {
                 bNext.PerformClick();
+                e.Handled = e.SuppressKeyPress = true;
+            }
         }
 
         private async void pictureBoxActive_Click(object sender, EventArgs e)
@@ -149,7 +172,7 @@ namespace wallpaper_forms
             if (pictureBoxActive.Image is null)
                 return;
 
-            Image image = await ImageService.GetImage(GlobalVariables.CurrentImage.PhotoURL);
+            Image image = await _imageService.GetImage(GlobalVariables.CurrentImage.PhotoURL);
 
             GlobalVariables.FullImage = image;
 
@@ -173,8 +196,8 @@ namespace wallpaper_forms
             largePicture.Image = null;
             largePicture.Visible = false;
 
-            this.Width = AppSettings.MainFormWidth;
-            this.Height = AppSettings.MainFormHeight;
+            this.Width = AppConfiguration.MainFormWidth;
+            this.Height = AppConfiguration.MainFormHeight;
 
             this.Location = location;
         }

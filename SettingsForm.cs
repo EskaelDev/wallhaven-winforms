@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +15,13 @@ namespace wallpaper_forms
     public partial class SettingsForm : Form
     {
         int ResolutionsLastCheckedIndex = -1, RatiosLastCheckedIndex = -1;
-        public SettingsForm()
+        private readonly IMessageBoxService _messageBoxService;
+        private readonly IHost _host;
+
+        public SettingsForm(IHost host)
         {
+            _host = host;
+            _messageBoxService = ActivatorUtilities.CreateInstance<MessageBoxService>(_host.Services);
             InitializeComponent();
             InitComponents();
         }
@@ -22,11 +29,11 @@ namespace wallpaper_forms
         private void InitComponents()
         {
 
-            lSelectedPath.Text = AppSettings.DirectoryPath;
+            lSelectedPath.Text = AppConfiguration.DirectoryPath;
 
             for (int i = 0; i < chkListRatios.Items.Count; i++)
             {
-                if (chkListRatios.Items[i].Equals(AppSettings.Ratio))
+                if (chkListRatios.Items[i].Equals(AppConfiguration.Ratio))
                 {
                     chkListRatios.SetItemChecked(i, true);
                     break;
@@ -35,7 +42,7 @@ namespace wallpaper_forms
 
             for (int i = 0; i < chkListResolutions.Items.Count; i++)
             {
-                if (chkListResolutions.Items[i].Equals(AppSettings.LeastResolution))
+                if (chkListResolutions.Items[i].Equals(AppConfiguration.LeastResolution))
                 {
                     chkListResolutions.SetItemChecked(i, true);
                     break;
@@ -52,13 +59,13 @@ namespace wallpaper_forms
         private async void saveButton_Click(object sender, EventArgs e)
         {
             if (chkListResolutions.CheckedItems.Count <= 0)
-                MessageBoxService.Show("Select resolution");
+                _messageBoxService.Show("Select resolution");
             else
             if (chkListRatios.CheckedItems.Count <= 0)
-                MessageBoxService.Show("Select ratio");
+                _messageBoxService.Show("Select ratio");
             else
             {
-                await AppSettings.Save(lSelectedPath.Text, chkListRatios.CheckedItems[0].ToString(), chkListResolutions.CheckedItems[0].ToString());
+                await AppConfiguration.Save(lSelectedPath.Text, chkListRatios.CheckedItems[0].ToString(), chkListResolutions.CheckedItems[0].ToString());
                 this.Close();
             }
         }
@@ -79,7 +86,7 @@ namespace wallpaper_forms
 
         private void openPath_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", AppSettings.DirectoryPath);
+            Process.Start("explorer.exe", AppConfiguration.DirectoryPath);
         }
 
         private void SelectOneCheckboxInList(CheckedListBox listBox, ItemCheckEventArgs e, ref int lastIndex)

@@ -1,13 +1,23 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using wallpaper_forms.Models;
 
 namespace wallpaper_forms.Services
 {
-    class WallhavenApiService
+    public class WallhavenApiService : IWallhavenApiService
     {
-        public async static Task<string> Get(string Uri, string body)
+        private readonly ILogger<RequestService> _log;
+        private readonly IConfiguration _config;
+
+        public WallhavenApiService(ILogger<RequestService> log, IConfiguration config)
+        {
+            _log = log;
+            _config = config;
+        }
+        public async Task<string> Get(string Uri, string body)
         {
             var client = new HttpClient();
             var request = new HttpRequestMessage

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,9 +14,22 @@ using wallpaper_forms.Models;
 
 namespace wallpaper_forms.Services
 {
-    public static class RequestService
+    public class RequestService : IRequestService
     {
-        public static async Task RequestImageDetails(string searchText)
+        private readonly ILogger<RequestService> _log;
+        private readonly IConfiguration _config;
+        private readonly IWallhavenApiService _wallhavenApiService;
+        private readonly IRandomSeedService _randomSeedService;
+
+        public RequestService(ILogger<RequestService> log, IConfiguration config, IWallhavenApiService wallhavenApiService, IRandomSeedService randomSeedService)
+        {
+            _log = log;
+            _config = config;
+            _wallhavenApiService = wallhavenApiService;
+            _randomSeedService = randomSeedService;
+        }
+
+        public async Task RequestImageDetails(string searchText)
         {
             try
             {
@@ -28,9 +43,12 @@ namespace wallpaper_forms.Services
                     }
                 }
 
-                string searchURL = AppSettings.WallhavenUri + searchChain;
+                string searchURL = AppConfiguration.WallhavenUri + searchChain;
 
-                var response = await WallhavenApiService.Get(searchURL, null);
+                _log.LogInformation("Search phrase:{searchText}", searchText);
+                _log.LogInformation("Search url: {searchurl}", searchURL);
+
+                var response = await _wallhavenApiService.Get(searchURL, null);
                 var responseModel = JsonSerializer.Deserialize<WallhavenResponse>(response, new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
@@ -50,38 +68,41 @@ namespace wallpaper_forms.Services
             }
             catch (Exception exception)
             {
+                _log.LogError(exception.Message);
                 Trace.WriteLine(exception.Message);
             }
         }
 
-        public static WallhavenRequest CreateRequest(string searchText)
+        public WallhavenRequest CreateRequest(string searchText)
         {
             return new WallhavenRequest()
             {
                 Q = searchText,
-                AtLeast = AppSettings.LeastResolution,
-                Categories = AppSettings.Categories,
-                Purity = AppSettings.Putiry,
-                Ratios = AppSettings.Ratio,
+                AtLeast = AppConfiguration.LeastResolution,
+                Categories = AppConfiguration.Categories,
+                Purity = AppConfiguration.Putiry,
+                Ratios = AppConfiguration.Ratio,
                 Sorting = Sorting.Random,
-                Page = AppSettings.Page,
-                Seed = AppSettings.Seed
+                Page = AppConfiguration.Page,
+                Seed = _randomSeedService.RandomString(AppConfiguration.seedLength)
             };
         }
-        public static string BuildCategoryString(CheckBox General, CheckBox Anime, CheckBox People)
+        public string BuildCategoryString(CheckBox General, CheckBox Anime, CheckBox People)
         {
             int category = 0;
             category = General.Checked ? category + Categories.General : category;
             category = Anime.Checked ? category + Categories.Anime : category;
             category = People.Checked ? category + Categories.People : category;
+            _log.LogDebug("Category: {category}", category.ToString("000"));
             return category.ToString("000");
         }
-        public static string BuildPurityString(CheckBox SFW, CheckBox Sketchy, CheckBox NSFW)
+        public string BuildPurityString(CheckBox SFW, CheckBox Sketchy, CheckBox NSFW)
         {
             int purity = 0;
             purity = SFW.Checked ? purity + Purity.Sfw : purity;
             purity = Sketchy.Checked ? purity + Purity.Sketchy : purity;
             purity = NSFW.Checked ? purity + Purity.Nsfw : purity;
+            _log.LogDebug("Purity: {purity}", purity.ToString("000"));
             return purity.ToString("000");
         }
 
