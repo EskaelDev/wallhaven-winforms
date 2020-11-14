@@ -66,8 +66,11 @@ namespace wallpaper_forms
             {
                 GlobalVariables.CurrentImage = GlobalVariables.Visited[imageIndex];
                 ApplyImage();
+                bSave.Text = "Save";
+                bSave.Enabled = true;
             }
             bPrevious.Enabled = true;
+
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -214,6 +217,8 @@ namespace wallpaper_forms
             }
             if (imageIndex <= 0)
                 bPrevious.Enabled = false;
+            bSave.Text = "Save";
+            bSave.Enabled = true;
         }
 
         private void ApplyImage()

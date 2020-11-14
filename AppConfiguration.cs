@@ -102,7 +102,6 @@ namespace wallpaper_forms
 
         public static async Task CreateDefaultOnStartup()
         {
-            StoredSettings storedSettings = new StoredSettings() { Path = settingsPath, Ratio = DefaultRatio, Resolution = DefaultResolution };
 
             try
             {
@@ -110,6 +109,7 @@ namespace wallpaper_forms
                 {
                     return;
                 }
+                StoredSettings storedSettings = new StoredSettings() { Path = Directory.GetCurrentDirectory(), Ratio = DefaultRatio, Resolution = DefaultResolution };
 
                 var serializerOptions = new JsonSerializerOptions();
                 serializerOptions.WriteIndented = true;
